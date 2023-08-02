@@ -66,3 +66,21 @@ exports.deleteUsers = async (req,res) =>{
     })
  }
 }
+exports.updateUsers = async (req,res) =>{
+     try {
+      const user = await User.findByIdAndUpdate(req.params.id,req.body);
+      res.status(200).json({
+        success: true,
+        message: "Update is successfull",
+        user
+      })
+    }
+    catch(error){
+      res.status(400).json({
+        success: false,
+        message: error.message
+      })
+    }
+
+  
+}
